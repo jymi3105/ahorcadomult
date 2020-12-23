@@ -4,7 +4,8 @@ var v3 = document.getElementsByTagName("audio")[2];
 var v4 = document.getElementsByTagName("audio")[3];
 
 var palabras = [["GUARGUERO", "LO DICE EL GOYO"], ["ABERRONCHO", "ES DE COMER, Y MARIDA CON LA ZARZAPOLLA"], ["ATROCHAR", "ATAJAR"], ["CEBADERA", "LA MASCARILLA"], ["BAR IZCARA", "CALERUEGA"], ["FRAY PERICO Y SU BORRICO", "LIBRO DE NIÑOS"], ["BOTAGUEÑA", "CHORI"], ["CALERUEGA", "UN GRAN LUGAR"], ["VALDEANDE", "UN GRAN LUGAR"], ["FUENTE RENDELUCAS", "UN BUEN LUGAR DENTRO DE OTRO GAN LUGAR"], 
-["BANZO", "LO DICE LOS PUCELANOS"], ["PALACIOS DE LA SIERRA", "BURGOS"], ["ARANDA DE DUERO", "NO HAY PISTA"], ["POMO", "CHUPARLOS EN ANTICOVID"]];
+["BANZO", "LO DICE LOS PUCELANOS"], ["PALACIOS DE LA SIERRA", "PUEBLO DE BURGOS"], ["ARANDA DE DUERO", "NO HAY PISTA"], ["POMO", "CHUPARLOS EN ANTICOVID"],["ATAULFO", "Fue nombrado rey durante la caida de Roma"], ["ESCALOFRIANTE", "Me la digiste yu ayer"], ["ESTERNOCLIEDOMASTOIDEO", "Es casi un trabalenguas"],["POLLITO", "Asi se le llama a los peques"], ["GUIRNALDA", "NAVIDEÑO"], ["UVI MEDICALIZADA", "AMBULANCIA"],
+["ALTO DE LAS CONTIENDAS", "GRAN PICO DE VALLADOLUID"]];
 var aleatorio = Math.floor(Math.random() * palabras.length);
 var palabra = palabras[aleatorio][0];
 console.log(palabra);

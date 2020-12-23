@@ -3,8 +3,7 @@
 }
 
 body{
-    background-color:rgb(241, 223, 223);
-    /*background-image: url("sobri.jpg");*/
+    background-image: url("sobri.jpg");
 }
 
 audio {
