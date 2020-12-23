@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>El juego del ahorcado</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <audio src="img/caballo.mp3" preload="auto" controls></audio>
+    <audio src="img/loser.mp3" preload="auto" controls></audio>
+    <audio src="img/fallo.mp3" preload="auto" controls></audio>
+    <audio src="img/acierto.mp3" preload="auto" controls></audio>
+    <h1 class="header">El maravilloso juego del ahorcado</h1>
+
+    <div id="cuadrojugador1">
+
+        <button onclick="IntroducirPalabra();">COMENZAR EL JUEGO</button>
+    </div>
+
+
+    <div id="contenerdor">
+        <div id="cuadropalabra">
+            <p id="intentos"></p>
+
+            <p id="letrasdichas"></p>
+            <h3 id="acierto"></h3>
+            <p id="oculta"></p>
+        </div>
+
+        <hr />
+
+        <div id="cuadrojugador2">
+            <h2>¡VAMOS MAQUINA!</h2>
+            <label>Selecciona una letra</label>
+            <select id="letra">
+                <option id="A">A</option>
+                <option id="B">B</option>
+                <option id="C">C</option>
+                <option id="D">D</option>
+                <option id="E">E</option>
+                <option id="F">F</option>
+                <option id="G">G</option>
+                <option id="H">H</option>
+                <option id="I">I</option>
+                <option id="J">J</option>
+                <option id="K">K</option>
+                <option id="l">L</option>
+                <option id="M">M</option>
+                <option id="N">N</option>
+                <option id="Ñ">Ñ</option>
+                <option id="O">O</option>
+                <option id="P">P</option>
+                <option id="Q">Q</option>
+                <option id="R">R</option>
+                <option id="S">S</option>
+                <option id="T">T</option>
+                <option id="U">U</option>
+                <option id="V">V</option>
+                <option id="W">W</option>
+                <option id="X">X</option>
+                <option id="Y">Y</option>
+                <option id="Z">Z</option>
+                <option id=" " value=" ">ESPACIO</option>
+            </select>
+            <button id="botondecirletra" onclick="DecirLetra();">Decir letra</button>
+
+            <br />
+
+            <label>Introduce tu solución</label>
+            <input type="text" id="palabrasolucion" />
+            <button id="botonresolver" onclick="Resolver();">Resolver</button><br />
+            <button id="volverJugar" onclick="volverJugar()">Volver a jugar</button>
+        </div>
+    </div>
+    <div id="colgado">
+        <img id="imagen" src="img/ahorcado_6.png" width="100%">
+    </div>
+    <script type="text/javascript" src="ahorcado.js"></script>
+
+</body>
+
+</html>

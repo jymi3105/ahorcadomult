@@ -1,0 +1,125 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    background-color:rgb(241, 223, 223);
+    /*background-image: url("sobri.jpg");*/
+}
+
+audio {
+    display: none;
+}
+
+label{
+    font-size: 1.3em;
+    margin: 10px;
+}
+
+.header{
+    justify-content: center;
+    font-size: 2.8em;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+#cuadropalabra {
+    font-size: 1cm;
+}
+
+#letrasdichas {
+    color: red;
+    float: left;
+}
+
+#oculta{
+    clear: both;
+}
+
+#intentos {
+    color: green;
+}
+
+#contenerdor {
+    width: 100%;
+}
+
+#letra, #palabrasolucion{
+    padding: 4px;
+    margin: 20px;
+    font-size: 1.3em;
+}
+
+#botonresolver, #botondecirletra{
+    padding: 4px;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+#cuadrojugador2, #imagen{
+    display: none;
+}
+
+#colgado {
+    width: 70%;
+}
+
+#acierto {
+    text-align: center;
+    min-height: 24px;
+    transform: scale(0);
+}
+
+@keyframes zoomInOut {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(2);
+    }
+    70% {
+        transform: scale(2);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+
+.acierto {
+    animation: zoomInOut 1s ease;
+}
+
+.rojo {
+    color: red;
+}
+
+.verde {
+    color: green;
+}
+
+.zoom-in {
+    transform: scale(1) !important;
+}
+
+.encuadre {
+    border: 2px dashed crimson;
+    padding: 3px 2px 2px 6px;
+    margin: 0 auto 25px auto;
+    text-align: center;
+    color: royalblue;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+}
+
+@media screen and (min-width: 1100px) {
+    #contenerdor {
+        float: left;
+        width: 55%;
+    }
+    
+    #colgado {
+        float: right;
+        width: 35%;
+        height: auto;
+    }
+}
