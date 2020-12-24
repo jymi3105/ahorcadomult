@@ -3,8 +3,8 @@ var v2 = document.getElementsByTagName("audio")[1];
 var v3 = document.getElementsByTagName("audio")[2];
 var v4 = document.getElementsByTagName("audio")[3];
 
-var palabras = [["GUARGUERO", "LO DICE EL GOYO"], ["ABERRONCHO", "ES DE COMER, Y MARIDA CON LA ZARZAPOLLA"], ["ATROCHAR", "ATAJAR"], ["CEBADERA", "LA MASCARILLA"], ["BAR IZCARA", "CALERUEGA"], ["FRAY PERICO Y SU BORRICO", "LIBRO DE NIÑOS"], ["BOTAGUEÑA", "CHORI"], ["CALERUEGA", "UN GRAN LUGAR"], ["VALDEANDE", "UN GRAN LUGAR"], ["FUENTE RENDELUCAS", "UN BUEN LUGAR DENTRO DE OTRO GAN LUGAR"], 
-["BANZO", "LO DICE LOS PUCELANOS"], ["PALACIOS DE LA SIERRA", "PUEBLO DE BURGOS"], ["ARANDA DE DUERO", "NO HAY PISTA"], ["POMO", "CHUPARLOS EN ANTICOVID"],["ATAULFO", "Fue nombrado rey durante la caida de Roma"], ["ESCALOFRIANTE", "Me la digiste yu ayer"], ["ESTERNOCLIEDOMASTOIDEO", "Es casi un trabalenguas"],["POLLITO", "Asi se le llama a los peques"], ["GUIRNALDA", "NAVIDEÑO"], ["UVI MEDICALIZADA", "AMBULANCIA"],
+var palabras = [["GUARGUERO", "LO DICE EL GOYO"], ["ABERRONCHO", "ES DE COMER, Y MARIDA CON LA ZARZAPOLLA"], ["ATROCHAR", "ATAJAR"], ["CEBADERA", "LA MASCARILLA"], ["BAR IZCARA", "CALERUEGA"], ["FRAY PERICO Y SU BORRICO", "LIBRO DE NIÑOS"], ["BOTAGUEÑA", "CHORI"], ["CALERUEGA", "UN GRAN LUGAR"], ["VALDEANDE", "UN GRAN LUGAR"], ["FUENTE RENDELUCAS", "UN BUEN LUGAR DENTRO DE OTRO GAN LUGAR"],
+["BANZO", "LO DICE LOS PUCELANOS"], ["PALACIOS DE LA SIERRA", "PUEBLO DE BURGOS"], ["ARANDA DE DUERO", "NO HAY PISTA"], ["POMO", "CHUPARLOS EN ANTICOVID"], ["ATAULFO", "Fue nombrado rey durante la caida de Roma"], ["ESCALOFRIANTE", "Me la digiste yu ayer"], ["ESTERNOCLEIDOMASTOIDEO", "Es casi un trabalenguas"], ["POLLITO", "Asi se le llama a los peques"], ["GUIRNALDA", "NAVIDEÑO"], ["UVI MEDICALIZADA", "AMBULANCIA"],
 ["ALTO DE LAS CONTIENDAS", "GRAN PICO DE VALLADOLUID"]];
 var aleatorio = Math.floor(Math.random() * palabras.length);
 var palabra = palabras[aleatorio][0];
@@ -91,6 +91,9 @@ function DecirLetra() {
         document.getElementById("palabrasolucion").value = "";
         v2.play();
         fallos = 6;
+        aleatorio = Math.floor(Math.random() * palabras.length);
+        palabra = palabras[aleatorio][0];
+        console.log(palabra);
         alert("Has perdido y te vamos a colgar.\nLa palabra era...\n¡JUEGA OTRA VEZ!");
     }
 
@@ -104,6 +107,9 @@ function DecirLetra() {
         document.getElementById("acierto").className += "zoom-in encuadre";
         document.getElementById("letrasdichas").innerHTML = "";
         v.play();
+        aleatorio = Math.floor(Math.random() * palabras.length);
+        palabra = palabras[aleatorio][0];
+        console.log(palabra);
         //Esto lo pongo porque si no  me quita la clase con el setTimeOut que puse anteriormente
         //Y aqui le vuelvo a poner las clases, porque en el anterior se las quitaba
         setTimeout(function () {
@@ -122,9 +128,14 @@ function Resolver() {
             document.getElementById("palabrasolucion").disabled = true;
             document.getElementById("botonresolver").disabled = true;
             document.getElementById("volverJugar").disabled = false;
+            document.getElementById("letrasdichas").innerHTML = "";
             document.getElementById("acierto").innerHTML = "Felicidades !!";
             document.getElementById("acierto").className += "zoom-in encuadre";
             v.play();
+            aleatorio = Math.floor(Math.random() * palabras.length);
+            palabra = palabras[aleatorio][0];
+            console.log(palabra);
+            fallos = 6;
         } else {
             if (fallos > 1) {
                 v2.play();
@@ -134,7 +145,7 @@ function Resolver() {
                 fallos--;
                 document.getElementById("intentos").innerHTML = "Tienes " + fallos + " oportunidades.";
                 document.getElementById("imagen").setAttribute("src", "img/ahorcado_" + fallos + ".png");
-                alert("Has fallado, pero aun te queda alguna oportunidades");
+                alert("Has fallado, pero aun te queda algunas oportunidades");
             } else {
                 v2.play();
                 alert("Has perdido!! Has metido\n" + document.getElementById("palabrasolucion").value.toUpperCase() + "\ny era: " + palabra);
@@ -162,6 +173,7 @@ function volverJugar() {
     document.getElementById("cuadropalabra").style.display = "none";
     document.getElementById("imagen").style.display = "none";
     document.getElementById("palabrasolucion").value = "";
-    document.getElementById("palabraorigen").value = "";
-    fallos = 6;
+    document.getElementById("acierto").className = "";
+    document.getElementById("acierto").innerHTML = "";
+
 }
