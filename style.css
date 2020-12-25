@@ -15,6 +15,12 @@ label {
     margin: 10px;
 }
 
+.boton{
+    height: 80px; 
+    width: 250px;
+    margin: 5px;
+}
+
 button, #botondecirletra {
     font-size: 2em;
     font-weight: bold;
@@ -30,7 +36,7 @@ button, #botondecirletra {
     background-color: rgba(207, 151, 141, 0.4);
     padding: 10px;
     width: 30%;
-    min-width: 252px;
+    min-width: 250px;
 }
 
 #puntuacion input {
@@ -150,5 +156,9 @@ button, #botondecirletra {
         font-weight: bold;
         background-color: chartreuse;
         padding: 6px;
+    }
+    .boton{
+        height: auto; 
+        width: auto;
     }
 }

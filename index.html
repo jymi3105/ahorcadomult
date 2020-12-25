@@ -16,7 +16,7 @@
 
     <div id="cuadrojugador1">
 
-        <button class="boton" onclick="IntroducirPalabra();">COMENZAR EL JUEGO</button>
+        <button onclick="IntroducirPalabra();">COMENZAR EL JUEGO</button>
     </div>
 
 
@@ -64,13 +64,13 @@
                 <option id="Z">Z</option>
                 <option id=" " value=" ">ESPACIO</option>
             </select>
-            <button id="botondecirletra" onclick="DecirLetra();">Decir letra</button>
+            <button class="boton" id="botondecirletra" onclick="DecirLetra();">Decir letra</button>
 
             <br />
 
             <label>Introduce tu solución</label>
             <input type="text" id="palabrasolucion" />
-            <button id="botonresolver" onclick="Resolver();">Resolver</button><br />
+            <button class="boton" id="botonresolver" onclick="Resolver();">Resolver</button><br />
             <button id="volverJugar" onclick="volverJugar()">Volver a jugar</button>
         </div>
     </div>
