@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-body{
+body {
     background-image: url("sobri.jpg");
 }
 
@@ -10,20 +10,37 @@ audio {
     display: none;
 }
 
-label{
-    font-size: 1.3em;
+label {
+    font-size: 1.5em;
     margin: 10px;
 }
 
-button{
-    font-size: 1.1em;
+button, #botondecirletra {
+    font-size: 2em;
     font-weight: bold;
-    background-color: chartreuse;
-    padding: 6px;
+    padding: 8px;
+    background-color: yellow;
 }
 
+#puntuacion {
+    position: fixed;
+    font-weight: bold;
+    bottom: 2%;
+    right: 2%;
+    background-color: rgba(207, 151, 141, 0.4);
+    padding: 10px;
+    width: 30%;
+    min-width: 252px;
+}
 
-.header{
+#puntuacion input {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: purple;
+    width: 60%;
+}
+
+.header {
     justify-content: center;
     font-size: 2.8em;
     text-decoration: underline;
@@ -39,7 +56,7 @@ button{
     float: left;
 }
 
-#oculta{
+#oculta {
     clear: both;
 }
 
@@ -51,19 +68,19 @@ button{
     width: 100%;
 }
 
-#letra, #palabrasolucion{
+#letra, #palabrasolucion {
     padding: 4px;
     margin: 20px;
     font-size: 1.3em;
 }
 
-#botonresolver, #botondecirletra{
+#botonresolver, #botondecirletra {
     padding: 4px;
     font-size: 1.3em;
     font-weight: bold;
 }
 
-#cuadrojugador2, #imagen{
+#cuadrojugador2, #imagen {
     display: none;
 }
 
@@ -123,10 +140,15 @@ button{
         float: left;
         width: 55%;
     }
-    
     #colgado {
         float: right;
         width: 35%;
         height: auto;
+    }
+    button {
+        font-size: 1.2em;
+        font-weight: bold;
+        background-color: chartreuse;
+        padding: 6px;
     }
 }

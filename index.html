@@ -16,7 +16,7 @@
 
     <div id="cuadrojugador1">
 
-        <button onclick="IntroducirPalabra();">COMENZAR EL JUEGO</button>
+        <button class="boton" onclick="IntroducirPalabra();">COMENZAR EL JUEGO</button>
     </div>
 
 
@@ -73,6 +73,11 @@
             <button id="botonresolver" onclick="Resolver();">Resolver</button><br />
             <button id="volverJugar" onclick="volverJugar()">Volver a jugar</button>
         </div>
+    </div>
+
+    <div id="puntuacion">
+        <label>PUNTUACION: </label>
+        <input id="puntos" readonly value="">
     </div>
     <div id="colgado">
         <img id="imagen" src="img/ahorcado_6.png" width="100%">

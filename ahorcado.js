@@ -13,6 +13,15 @@ var nueva = "";
 var listaLetras = [];
 var fallos = 6;
 var aciertos = 0;
+var letrasdichas = 0;
+
+//Pongo una cookie en el caso de que no exista
+if (leerCookie('puntuacion') == "") {
+    ponerUnaCookie('puntuacion', 0, 30);
+}
+
+document.getElementById("puntos").value = leerCookie('puntuacion');
+
 
 
 function IntroducirPalabra() {
@@ -22,7 +31,7 @@ function IntroducirPalabra() {
         document.getElementById("cuadrojugador2").style.display = "block";
         document.getElementById("cuadropalabra").style.display = "block";
         document.getElementById("imagen").style.display = "block";
-        document.getElementById("oculta").innerHTML = nueva = palabra.replace(/(\w|\s)/g, '* ');
+        document.getElementById("oculta").innerHTML = nueva = palabra.replace(/(\w|Ñ|\s)/g, '* ');
         document.getElementById("intentos").innerHTML = "Tienes " + fallos + " oportunidades.";
         listaLetras = [];
         document.getElementById("letrasdichas").innerHTML = "";
@@ -36,6 +45,7 @@ function DecirLetra() {
     if (listaLetras.indexOf(letra) == -1) {
         listaLetras.push(letra);
         document.getElementById("letrasdichas").innerHTML = listaLetras;
+        letrasdichas++;
 
         if (palabra.indexOf(letra) == -1) {
             fallos = fallos - 1;
@@ -90,10 +100,6 @@ function DecirLetra() {
         document.getElementById("volverJugar").disabled = false;
         document.getElementById("palabrasolucion").value = "";
         v2.play();
-        fallos = 6;
-        aleatorio = Math.floor(Math.random() * palabras.length);
-        palabra = palabras[aleatorio][0];
-        console.log(palabra);
         alert("Has perdido y te vamos a colgar.\nLa palabra era...\n¡JUEGA OTRA VEZ!");
     }
 
@@ -107,14 +113,24 @@ function DecirLetra() {
         document.getElementById("acierto").className += "zoom-in encuadre";
         document.getElementById("letrasdichas").innerHTML = "";
         v.play();
-        aleatorio = Math.floor(Math.random() * palabras.length);
-        palabra = palabras[aleatorio][0];
-        console.log(palabra);
+        modificarCookie(4);
         //Esto lo pongo porque si no  me quita la clase con el setTimeOut que puse anteriormente
         //Y aqui le vuelvo a poner las clases, porque en el anterior se las quitaba
         setTimeout(function () {
             document.getElementById("acierto").className = "zoom-in encuadre";
         }, 800);
+    }
+
+    if (letrasdichas == 8) {
+        alert("Ya has dicho 8 letras, y solo podras decir otras dos");
+        modificarCookie(-1);
+    }
+
+    if (letrasdichas == 10) {
+        document.getElementById("letra").disabled = true;
+        document.getElementById("botondecirletra").disabled = true;
+        document.getElementById("palabrasolucion").value = "";
+        modificarCookie(-1);
     }
 }
 
@@ -131,14 +147,11 @@ function Resolver() {
             document.getElementById("letrasdichas").innerHTML = "";
             document.getElementById("acierto").innerHTML = "Felicidades !!";
             document.getElementById("acierto").className += "zoom-in encuadre";
+            modificarCookie(5);
             v.play();
-            aleatorio = Math.floor(Math.random() * palabras.length);
-            palabra = palabras[aleatorio][0];
-            console.log(palabra);
-            fallos = 6;
         } else {
             if (fallos > 1) {
-                v2.play();
+                v3.play();
                 document.getElementById("acierto").innerHTML = "Fallo!";
                 document.getElementById("acierto").className += "acierto rojo";
                 document.getElementById("palabrasolucion").value = "";
@@ -161,6 +174,7 @@ function Resolver() {
 
         }
     }
+    document.getElementById("palabrasolucion").value = "";
 }
 
 function volverJugar() {
@@ -175,5 +189,67 @@ function volverJugar() {
     document.getElementById("palabrasolucion").value = "";
     document.getElementById("acierto").className = "";
     document.getElementById("acierto").innerHTML = "";
-
+    reseteo();
 }
+
+function reseteo() {
+    aleatorio = Math.floor(Math.random() * palabras.length);
+    palabra = palabras[aleatorio][0];
+    console.log(palabra);
+    fallos = 6;
+    aciertos = 0;
+    letrasdichas = 0;
+    document.getElementById("imagen").setAttribute("src", "img/ahorcado_" + fallos + ".png");
+}
+
+/*************FUNLCIONES PARA TRABAJAR CON COOKIES********************* */
+
+function ponerUnaCookie(clave, valor, dias = 0) {
+    var miCookie = "";
+    if (dias > 0) {
+        //Con el new Date vacio, le estamos dando la fecha del momento
+        var fecha = new Date();
+        fecha.setTime(fecha.getTime() + (dias * 24 * 60 * 60 * 1000));
+        //El formato de la fecha siempre tiene que ir en UTCString
+        var expires = "expires=" + fecha.toUTCString();
+        //Las cookies, siempre tienen un dormato clave=valor separandolor de otros con ;
+        miCookie = clave + "=" + valor + ";" + expires; //PERMANENTE
+    } else {
+        miCookie = clave + "=" + valor; //SESIÓN
+    }
+    document.cookie = miCookie;
+}
+
+function leerCookie(clave) {
+    var resultado = "";
+    //Como el formato siempre tiene que llevar entre la clave y el valor, un =, pues ta se lo añadimos aqui
+    var busqueda = clave + "=";
+    //Leyendo todas las coockies, nos va a dar una cadena separando las diferentes cookies con ;
+    //Asi que lo transfor a un array
+    var listCookies = document.cookie.split(';');
+    var par = "";
+
+    for (var i = 0; i < listCookies.length; i++) {
+        par = listCookies[i]; //Cada elemento del array de cookies: nombre de la cookie y carácter =
+
+        //Se quitan los espacios en blanco del principio
+        while (par.charAt(0) == ' ') {
+            //Y en ese caso me quedo con la parte de la cadena desde la posicion 0
+            par = par.substring(1);
+        }
+
+        //Se compara los que buscamos con el elemento del array. Si devuelve como índice 0 se ha encontrado
+        if (par.indexOf(busqueda) == 0) {
+            //Me quedo con la parte de la cadena desde la posicion tamaño de la cookie buscadas
+            //hasta el final de la cadena, ya que el metodo substring acepta dos parametros
+            resultado = par.substring(busqueda.length, par.length);
+        }
+    }
+    return resultado;
+}
+
+function modificarCookie(puntos) {
+    document.cookie = "puntuacion=" + (parseInt(leerCookie('puntuacion')) + puntos);
+    document.getElementById("puntos").value = leerCookie('puntuacion');
+}
+
